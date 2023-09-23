@@ -20,10 +20,10 @@ blocks:
       jobs:
         - name: Format Code
           commands:
-            - flutter format --self-if-changed .
+            - dart format --self-if-changed .
         - name: Analyze Code
           commands:
-            - flutter analyze .
+            - dart analyze .
   - name: Test
     task:
       jobs:
