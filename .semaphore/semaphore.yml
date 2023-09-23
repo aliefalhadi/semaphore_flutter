@@ -11,7 +11,9 @@ blocks:
         - name: Install dependencies
           commands:
             - checkout
+            - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages'
             - flutter pub get
+            - 'cache store flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages /root/.pub-cache'
   - name: Lint
     task:
       jobs:
