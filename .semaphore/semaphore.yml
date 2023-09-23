@@ -1,0 +1,29 @@
+version: v1.0
+name: Continuous Integration Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Setup
+    task:
+      jobs:
+        - name: Install dependencies
+          commands:
+            - checkout
+            - flutter pub get
+  - name: Lint
+    task:
+      jobs:
+        - name: Format Code
+          commands:
+            - flutter format --self-if-changed .
+        - name: Analyze Code
+          commands:
+            - flutter analyze .
+  - name: Test
+    task:
+      jobs:
+        - name: Run Flutter Test
+          commands:
+            - flutter test test
